@@ -21,18 +21,19 @@ export default function SubstackArticles({ rssUrl }: SubstackArticlesProps) {
   useEffect(() => {
     async function fetchFeed() {
       try {
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-        const res = await fetch(apiUrl);
+        // Uso di corsproxy.io per superare i blocchi CORS del browser
+        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`)}`;
+        const res = await fetch(proxyUrl);
         const data = await res.json();
 
-        if (data.status === 'ok' && data.items) {
-          // Pulizia descrizione rimuovendo eventuali tag HTML per mostrare un estratto pulito
+        if (data.status === 'ok' && data.items && data.items.length > 0) {
           const formattedArticles = data.items.map((item: any) => {
             const cleanDescription = item.description
               ? item.description.replace(/<[^>]*>?/gm, '').slice(0, 160) + '...'
               : 'Leggi l\'articolo completo su Substack.';
 
             const formattedDate = new Date(item.pubDate).toLocaleDateString('it-IT', {
+              day: 'numeric',
               month: 'long',
               year: 'numeric',
             });
@@ -50,6 +51,7 @@ export default function SubstackArticles({ rssUrl }: SubstackArticlesProps) {
           setError(true);
         }
       } catch (err) {
+        console.error('Errore durante il recupero del feed RSS:', err);
         setError(true);
       } finally {
         setLoading(false);
@@ -76,15 +78,15 @@ export default function SubstackArticles({ rssUrl }: SubstackArticlesProps) {
 
   if (error || articles.length === 0) {
     return (
-      <div className="bg-white rounded-xl p-6 border border-slate-200 text-center text-slate-500">
-        <p>Nessun articolo recuperato al momento.</p>
+      <div className="bg-white rounded-xl p-6 border border-slate-200 text-center text-slate-500 py-8">
+        <p className="mb-2">Nessun articolo recuperato al momento.</p>
         <a 
-          href="https://substack.com/@adrianoc99" 
+          href="https://internazionalesituazionista.substack.com" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="text-emerald-600 hover:underline text-sm font-semibold mt-2 inline-block"
+          className="text-emerald-600 hover:underline text-sm font-semibold inline-block"
         >
-          Visita il profilo Substack per leggere tutti i pezzi →
+          Visita direttamente la pubblicazione su Substack →
         </a>
       </div>
     );
