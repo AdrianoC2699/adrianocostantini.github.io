@@ -1,4 +1,7 @@
-import { articles } from '@/data/articles';
+import SubstackArticles from '@/components/SubstackArticles';
+
+// Inserisci l'URL del feed RSS della tua newsletter Substack (es. https://nome-newsletter.substack.com/feed):
+const RSS_FEED_URL = "https://adrianocostantini.substack.com/feed";
 
 export default function Home() {
   return (
@@ -46,49 +49,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Articoli Substack */}
+        {/* Articoli Substack Automatici */}
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-slate-200 pb-4">
             <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
               Articoli & Analisi
             </h2>
             <span className="text-sm text-slate-500 font-medium">
-              Pubblicati su Substack
+              Feed Substack in tempo reale
             </span>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            {articles.map((article, index) => (
-              <article 
-                key={index} 
-                className="bg-white rounded-xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex justify-between items-center text-xs font-medium text-slate-400 mb-3">
-                    <span className="text-emerald-600 font-semibold uppercase tracking-wider bg-emerald-50 px-2.5 py-0.5 rounded-md">
-                      {article.category}
-                    </span>
-                    <span>{article.date} · {article.readTime}</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition mb-2">
-                    {article.title}
-                  </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                    {article.description}
-                  </p>
-                </div>
-
-                <a
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-semibold text-emerald-600 hover:text-emerald-700 transition"
-                >
-                  Leggi articolo <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-              </article>
-            ))}
-          </div>
+          {/* Componente di Fetch Automatico */}
+          <SubstackArticles rssUrl={RSS_FEED_URL} />
         </section>
 
         {/* Footer */}
