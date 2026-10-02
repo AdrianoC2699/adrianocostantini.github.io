@@ -4,7 +4,7 @@ type Post = { title: string; link: string; date: string; excerpt: string };
 
 async function getPosts(feedUrl: string): Promise<Post[]> {
   try {
-    const parser = new Parser({ timeout: 15000 });
+    const parser = new Parser({ timeout: 15000, headers: { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36", Accept: "application/rss+xml, application/xml" } });
     const feed = await parser.parseURL(feedUrl);
     return feed.items.slice(0, 6).map((item) => {
       const text = (item.contentSnippet ?? "").replace(/\s+/g, " ").trim();
