@@ -19,7 +19,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-3">
               <a 
-                href="https://substack.com" 
+                href="https://substack.com/@adrianoc99" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-medium text-sm rounded-lg transition"
@@ -27,7 +27,7 @@ export default function Home() {
                 Substack
               </a>
               <a 
-                href="https://www.linkedin.com/in/adriano-costantini" 
+                href="https://www.linkedin.com/in/adriano-costantini-039781bb/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="inline-flex items-center px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm rounded-lg transition"
