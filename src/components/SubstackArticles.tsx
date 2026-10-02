@@ -18,7 +18,7 @@ export default function SubstackArticles({ publicationUrl }: { publicationUrl: s
           href={publicationUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-semibold text-emerald-700 hover:underline"
+          className="text-sm font-semibold text-orange-600 hover:underline"
         >
           Leggi direttamente su Substack →
         </a>
@@ -34,16 +34,16 @@ export default function SubstackArticles({ publicationUrl }: { publicationUrl: s
           href={post.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md"
+          className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md"
         >
           <time className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-400">
             {formatDate(post.isoDate)}
           </time>
-          <h3 className="mb-2 text-lg font-semibold leading-snug text-slate-900 group-hover:text-emerald-700">
+          <h3 className="mb-2 text-lg font-semibold leading-snug text-slate-900 group-hover:text-orange-600">
             {post.title}
           </h3>
           <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-600">{post.excerpt}</p>
-          <span className="text-sm font-semibold text-emerald-700">
+          <span className="text-sm font-semibold text-orange-600">
             Leggi l&apos;articolo{" "}
             <span className="inline-block transition group-hover:translate-x-1">→</span>
           </span>
