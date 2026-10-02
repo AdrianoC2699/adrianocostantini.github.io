@@ -84,7 +84,7 @@ export default function Home() {
               Tutti gli articoli →
             </a>
           </div>
-          <SubstackArticles feedUrl={FEED_URL} publicationUrl={PUBLICATION_URL} />
+          <SubstackArticles publicationUrl={PUBLICATION_URL} />
         </section>
       </main>
 
