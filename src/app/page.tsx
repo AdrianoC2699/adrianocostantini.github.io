@@ -1,7 +1,7 @@
 import SubstackArticles from '@/components/SubstackArticles';
 
-// Inserisci l'URL del feed RSS della tua newsletter Substack (es. https://nome-newsletter.substack.com/feed):
-const RSS_FEED_URL = "https://adrianocostantini.substack.com/feed";
+// Feed RSS ufficiale della tua pubblicazione Substack
+const RSS_FEED_URL = "https://adrianoc99.substack.com/feed";
 
 export default function Home() {
   return (
