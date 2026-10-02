@@ -9,20 +9,19 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    title: "Titolo del tuo primo articolo su Substack",
-    description: "Breve abstract dell'articolo (es. sostenibilità, politiche pubbliche, governance ESG).",
+    title: "Rigenerazione urbana e consumo di suolo: prospettive e politiche",
+    description: "Un'analisi critica sulle politiche di tutela del territorio, dinamiche abitative europee e sfide di sostenibilità urbana.",
     date: "Settembre 2026",
-    url: "https://tuonome.substack.com/p/articolo-1",
+    url: "https://substack.com",
     category: "Public Affairs",
-    readTime: "5 min",
+    readTime: "6 min",
   },
   {
-    title: "Titolo del secondo articolo",
-    description: "Analisi di dettaglio sulle direttive europee o politiche territoriali.",
-    date: "Agosto 2026",
-    url: "https://tuonome.substack.com/p/articolo-2",
+    title: "ESG Governance e rendicontazione di sostenibilità",
+    description: "Approfondimento sugli standard ESG e la compliance per le pubbliche amministrazioni e le imprese virtuose.",
+    date: "Settembre 2026",
+    url: "https://substack.com",
     category: "ESG & Sostenibilità",
     readTime: "8 min",
   },
 ];
-
