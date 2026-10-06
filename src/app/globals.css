@@ -1,11 +1,126 @@
 @import "tailwindcss";
 
+@theme {
+  --color-paper: #f6f1e7;
+  --color-ink: #1d2a24;
+  --color-muted: #4f5b54;
+  --color-clay: #b4472f;
+  --color-sage: #7fae8b;
+  --color-moss: #4f8a62;
+  --color-lilac: #b3a4de;
+  --color-sun: #eab949;
+}
+
+@theme inline {
+  --font-display: var(--font-fraunces), Georgia, serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  background-color: #faf7f2;
-  color: #0f172a;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+
+/* Foglie che cadono */
+.leaves {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.leaf {
+  position: absolute;
+  top: 0;
+  left: var(--x);
+  width: var(--size);
+  height: var(--size);
+  opacity: 0;
+  animation: leaf-fall var(--dur) linear var(--delay) infinite;
+  will-change: transform, opacity;
+}
+
+.leaf-svg {
+  animation: leaf-sway var(--sway) ease-in-out infinite alternate;
+  transform-origin: 50% 20%;
+}
+
+@keyframes leaf-fall {
+  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+  8% { opacity: var(--op); }
+  92% { opacity: var(--op); }
+  100% { transform: translate3d(var(--drift), 110vh, 0) rotate(var(--spin)); opacity: 0; }
+}
+
+@keyframes leaf-sway {
+  from { transform: rotate(-28deg); }
+  to { transform: rotate(28deg); }
+}
+
+/* Anello economia circolare */
+.orbit {
+  animation: orbit-spin 50s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Puntini che respirano */
+.pulse-dot {
+  animation: dot-pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.7; }
+}
+
+/* Germoglio e comparsa delle sezioni allo scroll (solo dove supportato) */
+.sprout {
+  transform-origin: 50% 100%;
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 25%;
+  }
+
+  .sprout {
+    animation: sprout-grow linear both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 45%;
+  }
+
+  @keyframes reveal-up {
+    from { opacity: 0; transform: translateY(32px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes sprout-grow {
+    from { transform: scale(0) rotate(-25deg); }
+    to { transform: scale(1) rotate(0deg); }
+  }
+}
+
+/* Accessibilità: niente movimento se l'utente lo ha disattivato */
+@media (prefers-reduced-motion: reduce) {
+  .leaves { display: none; }
+  .orbit, .pulse-dot, .reveal, .sprout, .leaf-svg {
+    animation: none !important;
+  }
+  html { scroll-behavior: auto; }
 }

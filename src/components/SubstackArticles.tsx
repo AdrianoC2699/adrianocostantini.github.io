@@ -12,43 +12,41 @@ function formatDate(iso: string) {
 export default function SubstackArticles({ publicationUrl }: { publicationUrl: string }) {
   if (posts.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-slate-300 p-8 text-center text-slate-500">
-        <p className="mb-2">Gli articoli non sono disponibili in questo momento.</p>
+      <p className="text-muted">
+        Gli articoli non sono disponibili in questo momento.{" "}
         <a
           href={publicationUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-semibold text-orange-600 hover:underline"
+          className="font-semibold text-clay underline underline-offset-4"
         >
-          Leggi direttamente su Substack →
+          Leggi direttamente su Substack
         </a>
-      </div>
+        .
+      </p>
     );
   }
 
   return (
-    <div className="grid gap-5 sm:grid-cols-2">
+    <ul className="divide-y divide-ink/15 border-y border-ink/15">
       {posts.map((post) => (
-        <a
-          key={post.link}
-          href={post.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md"
-        >
-          <time className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-400">
-            {formatDate(post.isoDate)}
-          </time>
-          <h3 className="mb-2 text-lg font-semibold leading-snug text-slate-900 group-hover:text-orange-600">
-            {post.title}
-          </h3>
-          <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-600">{post.excerpt}</p>
-          <span className="text-sm font-semibold text-orange-600">
-            Leggi l&apos;articolo{" "}
-            <span className="inline-block transition group-hover:translate-x-1">→</span>
-          </span>
-        </a>
+        <li key={post.link}>
+          <a
+            href={post.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group grid gap-1 py-6 sm:grid-cols-[9rem_1fr] sm:gap-8"
+          >
+            <time className="text-sm text-muted">{formatDate(post.isoDate)}</time>
+            <div>
+              <h3 className="font-display text-xl leading-snug transition-colors group-hover:text-clay sm:text-2xl">
+                {post.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{post.excerpt}</p>
+            </div>
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
