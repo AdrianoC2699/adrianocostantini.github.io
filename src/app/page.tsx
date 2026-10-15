@@ -7,6 +7,7 @@ import Sprout from "@/components/Sprout";
 const PUBLICATION_URL = "https://adrianoc99.substack.com";
 const BASE_PATH = "/adrianocostantini.github.io";
 const EMAIL = "adrianocostantini99@outlook.it";
+const CV_URL = `${BASE_PATH}/cv-adriano-costantini.pdf`;
 const LINKEDIN = "https://www.linkedin.com/in/adriano-costantini-039781bb/";
 const SUBSTACK_PROFILE = "https://substack.com/@adrianoc99";
 const GITHUB = "https://github.com/AdrianoC2699";
@@ -59,6 +60,57 @@ const path = [
   },
 ];
 
+const glossary = [
+  {
+    term: "ESG",
+    full: "Environmental, Social, Governance",
+    text: "I tre ambiti con cui si valuta la sostenibilità di un'impresa: ambiente, rapporti sociali e qualità della gestione.",
+    bar: "bg-sage",
+  },
+  {
+    term: "CSRD",
+    full: "Corporate Sustainability Reporting Directive",
+    text: "La direttiva europea che impone alle imprese incluse nel suo ambito di rendicontare in modo standard il proprio impatto ambientale e sociale.",
+    bar: "bg-clay",
+  },
+  {
+    term: "GRI",
+    full: "Global Reporting Initiative",
+    text: "I principali standard internazionali, volontari, per scrivere un bilancio di sostenibilità comparabile.",
+    bar: "bg-lilac",
+  },
+  {
+    term: "Analisi di materialità",
+    full: "Quali temi contano davvero",
+    text: "Il processo con cui un'impresa individua i temi di sostenibilità più rilevanti, per sé e per chi è coinvolto dalle sue attività.",
+    bar: "bg-sun",
+  },
+  {
+    term: "CBAM",
+    full: "Carbon Border Adjustment Mechanism",
+    text: "Il meccanismo europeo che applica un prezzo al carbonio contenuto in alcuni prodotti importati, per non penalizzare chi produce in Europa.",
+    bar: "bg-sage",
+  },
+  {
+    term: "Transizione 5.0",
+    full: "Incentivi per le imprese italiane",
+    text: "Il piano di crediti d'imposta che sostiene gli investimenti in digitalizzazione ed efficienza energetica.",
+    bar: "bg-clay",
+  },
+  {
+    term: "PNRR",
+    full: "Piano Nazionale di Ripresa e Resilienza",
+    text: "Il piano italiano di investimenti e riforme finanziato in gran parte con i fondi europei Next Generation EU.",
+    bar: "bg-lilac",
+  },
+  {
+    term: "Economia circolare",
+    full: "Meno rifiuti, più riuso",
+    text: "Un modello che mantiene a lungo prodotti e materiali in uso, con riparazione, riuso e riciclo, invece del classico produci, usa e getta.",
+    bar: "bg-sun",
+  },
+];
+
 function Section({
   id,
   label,
@@ -97,6 +149,7 @@ export default function Home() {
             <a href="#chi-sono" className="hover:text-clay">Chi sono</a>
             <a href="#percorso" className="hover:text-clay">Percorso</a>
             <a href="#scritti" className="hover:text-clay">Scritti</a>
+            <a href="#glossario" className="hover:text-clay">Glossario</a>
             <a href="#contatti" className="hover:text-clay">Contatti</a>
           </div>
         </nav>
@@ -136,6 +189,13 @@ export default function Home() {
                 className="rounded-full px-6 py-3 text-sm font-semibold ring-1 ring-ink/40 transition hover:ring-ink"
               >
                 Leggi gli articoli
+              </a>
+              <a
+                href={CV_URL}
+                download="CV-Adriano-Costantini.pdf"
+                className="rounded-full px-6 py-3 text-sm font-semibold ring-1 ring-ink/40 transition hover:ring-ink"
+              >
+                Scarica il CV
               </a>
             </div>
           </div>
@@ -215,6 +275,47 @@ export default function Home() {
           >
             Tutti gli articoli su Substack →
           </a>
+
+          <div className="mt-12 rounded-3xl bg-sage/30 p-8 sm:p-10">
+            <p className="text-sm font-semibold">Newsletter</p>
+            <h3 className="font-display mt-1 text-2xl sm:text-3xl">
+              Ricevi le nuove analisi via email
+            </h3>
+            <p className="mt-3 max-w-xl leading-relaxed text-ink/80">
+              Scrivo di politiche pubbliche e sostenibilità: puoi ricevere ogni nuovo
+              articolo direttamente nella tua casella di posta.
+            </p>
+            <a
+              href={PUBLICATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper transition hover:bg-clay"
+            >
+              Iscriviti su Substack
+            </a>
+          </div>
+        </Section>
+
+        <Section id="glossario" label="04" title="Parole chiave">
+          <p className="mb-8 max-w-xl text-ink/80">
+            Le sigle che ricorrono quando si parla di sostenibilità e politiche pubbliche,
+            spiegate in due righe.
+          </p>
+          <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+            {glossary.map((g) => (
+              <div key={g.term} className="group">
+                <dt className="flex items-center gap-3">
+                  <span className={`h-1 w-6 rounded-full transition-all duration-300 group-hover:w-12 ${g.bar}`} />
+                  <span className="font-display text-xl transition-colors group-hover:text-clay">
+                    {g.term}
+                  </span>
+                </dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted">
+                  <span className="font-semibold text-ink/80">{g.full}.</span> {g.text}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </Section>
       </main>
 
@@ -239,6 +340,13 @@ export default function Home() {
               className="rounded-full px-6 py-3 text-sm font-semibold ring-1 ring-paper/40 transition hover:ring-paper"
             >
               LinkedIn
+            </a>
+            <a
+              href={CV_URL}
+              download="CV-Adriano-Costantini.pdf"
+              className="rounded-full px-6 py-3 text-sm font-semibold ring-1 ring-paper/40 transition hover:ring-paper"
+            >
+              Scarica il CV
             </a>
           </div>
           <p className="mt-5 text-sm text-paper/70">{EMAIL}</p>
