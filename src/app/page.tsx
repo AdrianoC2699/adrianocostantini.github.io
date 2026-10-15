@@ -143,9 +143,9 @@ export default function Home() {
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
       <Leaves />
       <header className="relative z-10">
-        <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6 text-sm">
+        <nav className="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
           <span className="font-display text-lg">Adriano Costantini</span>
-          <div className="flex gap-6 font-medium text-muted">
+          <div className="flex flex-wrap gap-x-5 gap-y-2 font-medium text-muted sm:gap-x-6">
             <a href="#chi-sono" className="hover:text-clay">Chi sono</a>
             <a href="#percorso" className="hover:text-clay">Percorso</a>
             <a href="#scritti" className="hover:text-clay">Scritti</a>
