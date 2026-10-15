@@ -14,7 +14,7 @@ try {
     },
   });
   const feed = await parser.parseURL(FEED_URL);
-  const posts = feed.items.slice(0, 6).map((item) => {
+  const posts = feed.items.slice(0, 4).map((item) => {
     const text = (item.contentSnippet ?? "").replace(/\s+/g, " ").trim();
     return {
       title: item.title ?? "Senza titolo",

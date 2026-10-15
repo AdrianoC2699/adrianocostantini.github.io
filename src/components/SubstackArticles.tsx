@@ -1,5 +1,7 @@
 import posts from "@/data/posts.json";
 
+const MAX_POSTS = 4;
+
 function formatDate(iso: string) {
   if (!iso) return "";
   return new Date(iso).toLocaleDateString("it-IT", {
@@ -29,7 +31,7 @@ export default function SubstackArticles({ publicationUrl }: { publicationUrl: s
 
   return (
     <ul className="divide-y divide-ink/15 border-y border-ink/15">
-      {posts.map((post) => (
+      {posts.slice(0, MAX_POSTS).map((post) => (
         <li key={post.link}>
           <a
             href={post.link}
